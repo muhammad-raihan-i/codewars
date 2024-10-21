@@ -1,0 +1,68 @@
+function formatDuration (seconds) {
+  // Complete this function
+  if(seconds==0){
+    return "now";
+  }
+  let writings="";
+  let rmseconds=seconds;
+  let dv=[60,60,24,365,1];
+  let un=[0,0,0,0,0];
+  let unitnames=["second","minute","hour","day","year"];
+  let idx=0;
+  let separators=[];
+  while(idx<un.length){
+    if(idx<un.length-1){
+      un[idx]=rmseconds%dv[idx];
+      rmseconds=Math.floor(rmseconds/dv[idx]);
+      idx++;
+    }else{
+      un[idx]=rmseconds;
+      idx++;
+    } 
+  }
+  while(idx>0){
+    idx--;
+    if(un[idx]==0){
+      unitnames[idx]="";
+    }else{
+      unitnames[idx]=""+un[idx]+" "+unitnames[idx]+pluralSuffix(un[idx]);
+    }
+  }
+  separators=writeSeparators(countFilled(unitnames));
+  idx=unitnames.length;
+  let sidx=0;
+  while(idx>0){
+    idx--;
+    if(unitnames[idx]!=""){
+      writings=writings+unitnames[idx]+separators[sidx];
+      sidx++;
+    }
+  }
+  return writings;
+}
+function countFilled(myArray){
+  let count=0;
+  for(let u=0;u<myArray.length;u++){
+    if(myArray[u]!=""){
+      count++;
+    }
+  }
+  return count;
+}
+function pluralSuffix(num){
+  if(num>1){
+    return "s";
+  }else{
+    return "";
+  }
+}
+function writeSeparators(num){
+  let u=num;
+  let separators=[];
+  let types=[""," and ",", "];
+  while(u>0){
+    u--;
+    separators.push(types[Math.min(u,2)]);
+  }
+  return separators;
+}
