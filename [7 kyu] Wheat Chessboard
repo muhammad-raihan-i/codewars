@@ -1,0 +1,4 @@
+function squaresNeeded(grains){
+  return 1+Math.floor(Math.log2(Math.max(1/2,grains)));
+  //your code here
+}
