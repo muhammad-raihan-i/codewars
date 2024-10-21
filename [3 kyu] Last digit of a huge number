@@ -1,0 +1,88 @@
+/*function lastDigit(as){
+  let bs=as;
+  if(as.length==0){
+    return 1;
+  }
+  if(as.length==1){
+    return as[0]%10;
+  }
+  let index=as.length-1;
+  let carry=0;
+  let result=0;
+  while(index>0){
+    index--;
+    if(index==0){
+      result=(expmod(bs[0],bs[1],10) % 10);
+    }else{
+      bs[index]=expmod(bs[index],bs[index+1],4);
+    }
+  }
+  result=result%10;
+  return result;
+}
+function expmod(a,b,m){
+  if(b==0){
+    return 1;
+  }else if(a==0){
+    return 0;
+  }
+  let u=0;
+  let result=1;
+  while(u<b){
+    result=(result*a - 1)%m + 1;
+    u++;
+  }
+  return result;
+}*/
+function lastDigit(as){
+  let bs=as;
+  if(as.length==0){
+    return 1;
+  }
+  if(as.length==1){
+    return as[0]%10;
+  }
+  if(as.length==2){
+    return expoten(as[0],as[1]);
+  }
+  let index=bs.length-1;
+  let carry=0;
+  while(index>0){
+    index--;
+    if(index==0){
+      return expoten(bs[0],bs[1]);
+    }else{
+      bs[index]=expofour(bs[index],bs[index+1]);
+    }
+  }
+}
+function expofour(a,b){
+  if(a==0&&b!=0){
+    return 0;
+  }else if(b==0||a==1){
+    return 1;
+  }else if(a%4==2&&b==1){
+    return 2;
+  }else if(a%4==3&&b%2==1){
+    return 3;
+  }else if(a%4==0||(a%4==2&&b>1)){
+    return 4;
+  }else if((a%4==1)||(a%4==3&&b%2==0)){
+    return 5;
+  }
+}
+function expoten(a,b){
+  if(b==0){
+    return 1;
+  }else if(a%10==0){
+    return 0;
+  }
+  let newa=a%10;
+  let newb=b;
+  let resutl=1;
+  while(newb>0){
+    newb--;
+    resutl=(resutl*newa)%10;
+  }
+  return resutl;
+}
