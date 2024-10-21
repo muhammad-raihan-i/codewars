@@ -1,0 +1,19 @@
+function isPrime(num) {
+  let start=2;
+  if(num<=1){
+    return false;
+  }else if(num==2){
+    return true;
+  }else{
+    while(start<num){
+      if(num%start==0){
+        return false;
+      }
+      if(start*start<num){
+        start++;
+      }else{
+        return true;
+      }
+    }
+  }
+}
