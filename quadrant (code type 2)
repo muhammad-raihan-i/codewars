@@ -1,0 +1,37 @@
+function quadrant(x, y) {
+  let a=isPos(x);
+  let b=isPos(y);
+  return reward(negate(b),reward(negate(b),reward(negate(equality(a,b)),start())));
+}
+/*variable suffix:
+_b = boolean
+_i = integer
+_x = any
+*/
+/*returns boolean*/
+function isPos(a_i){
+  if(a_i>0){
+    return true;
+  }
+}
+function equality(a_b,b_b){
+  if(a_b==b_b){
+    return true;
+  }else{
+    return false;
+  }
+}
+function negate(a_b){
+  return !a_b;
+}
+/*returns number*/
+function start(){
+  return 1;
+}
+function reward(a_b,b_i){
+  if(a_b){
+    return b_i+1;
+  }else{
+    return b_i;
+  }
+}
