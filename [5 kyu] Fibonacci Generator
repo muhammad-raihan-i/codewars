@@ -1,0 +1,11 @@
+const phi=(1+Math.sqrt(5))/2;
+const psi=(1-Math.sqrt(5))/2;
+const sr5=Math.sqrt(5);
+function genfib(){
+  return function fib(){
+    let h=(phi**u-psi**u)/sr5;
+    u++;
+    return h;
+  }
+}
+let u=0;
