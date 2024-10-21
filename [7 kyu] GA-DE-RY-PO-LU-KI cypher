@@ -1,0 +1,25 @@
+function encode(str){
+  let asd="GgDdRrPpLlKkAaEeYyOoUuIi";
+  let h1=0;
+  let h2=0;
+  let result="";
+  while(h1<str.length){
+    while(h2<asd.length){
+      if(str[h1]==asd[h2]){
+        result=result+asd[(h2+(asd.length)/2)%asd.length];
+        h2=asd.length;
+      }
+      h2++;
+      if(h2==asd.length){
+        result=result+str[h1];
+      }
+    }
+    h2=0;
+    h1++;
+  }
+  return result;   
+}
+
+function decode(str){
+    return encode(str);   
+}
